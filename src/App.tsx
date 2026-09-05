@@ -3,6 +3,7 @@ import { BackgroundVideo } from './components/BackgroundVideo';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { ToonHubSection } from './components/ToonHubSection';
+import { StudioDiscoverySection } from './components/StudioDiscoverySection';
 
 export default function App() {
   return (
@@ -18,6 +19,9 @@ export default function App() {
 
       {/* TOONHUB full-viewport character-figurine carousel */}
       <ToonHubSection />
+
+      {/* Studio Discovery & Collaboration Finale (Last Page) */}
+      <StudioDiscoverySection />
     </main>
   );
 }

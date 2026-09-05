@@ -1,6 +1,6 @@
 {
   "name": "Z Creations",
-  "description": "Interactive landing page featuring mouse-scrubbed video and the TOONHUB 3D character figurine carousel.",
+  "description": "Interactive landing page featuring mouse-scrubbed video, the Z CREATION 3D figurine carousel, and the studio discovery showcase.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

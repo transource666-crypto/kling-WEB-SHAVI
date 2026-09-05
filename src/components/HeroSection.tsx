@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ArrowRight, ArrowDown, ArrowUpRight, MoveHorizontal } from 'lucide-react';
 import { useTypewriter } from '../hooks/useTypewriter';
 
 const TYPEWRITER_TEXT =
@@ -6,11 +7,11 @@ const TYPEWRITER_TEXT =
 
 export const HeroSection: React.FC = () => {
   const { displayed, done } = useTypewriter(TYPEWRITER_TEXT, 38, 600);
-  const [pillsVisible, setPillsVisible] = useState(false);
+  const [controlsVisible, setControlsVisible] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setPillsVisible(true);
+      setControlsVisible(true);
     }, 400);
 
     return () => clearTimeout(timer);
@@ -19,37 +20,47 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       id="hero-section"
-      className="relative z-1 h-screen w-full flex flex-col justify-end pb-12 md:justify-center md:pb-0 px-5 sm:px-8 md:px-10 overflow-hidden"
+      className="relative z-10 min-h-screen w-full flex flex-col justify-between pt-28 sm:pt-36 pb-8 sm:pb-12 px-5 sm:px-10 lg:px-16 overflow-hidden"
     >
-      {/* Content container */}
-      <div id="hero-content" className="w-full max-w-xl relative z-10 md:ml-auto md:self-end">
-        {/* 1. Blurred intro label */}
+      {/* Subtle bottom vignette to ensure high text contrast over video scrub */}
+      <div
+        className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10 pointer-events-none"
+        aria-hidden="true"
+      />
+
+      {/* Main hero center-left content */}
+      <div
+        id="hero-content"
+        className="relative z-20 w-full max-w-4xl my-auto"
+      >
+        {/* 1. Status tag matching ToonHub & Discovery pages */}
         <div
-          id="blurred-intro-label"
-          className="pointer-events-none select-none mb-5 sm:mb-6 text-white font-normal"
-          style={{
-            fontSize: 'clamp(18px, 4vw, 26px)',
-            lineHeight: 1.3,
-            fontWeight: 400,
-            color: '#fff',
-            filter: 'blur(4px)',
-          }}
+          id="hero-status-pill"
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md mb-6"
         >
-          Hey there, meet A.R.I.A,
-          <br />
-          Mainframe's Adaptive Response Interface Agent
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="text-[11px] uppercase tracking-widest text-white/80 font-semibold">
+            Z CREATION • 3D FIGURINES & SPATIAL CRAFT
+          </span>
         </div>
 
-        {/* 2. Typewriter text */}
+        {/* 2. Bold display heading with Anton font matching the site */}
+        <h1
+          id="hero-main-title"
+          className="uppercase tracking-tight text-white mb-4 sm:mb-6 leading-none select-none"
+          style={{
+            fontFamily: "'Anton', sans-serif",
+            fontSize: 'clamp(46px, 8.5vw, 110px)',
+            letterSpacing: '-0.02em',
+          }}
+        >
+          TURNING VISIONS INTO UNFORGETTABLE 3D CRAFT.
+        </h1>
+
+        {/* 3. Typewriter paragraph */}
         <p
           id="typewriter-paragraph"
-          className="text-white mb-5 sm:mb-6 font-normal"
-          style={{
-            fontSize: 'clamp(18px, 4vw, 26px)',
-            lineHeight: 1.35,
-            fontWeight: 400,
-            minHeight: '54px',
-          }}
+          className="text-white/80 text-base sm:text-xl lg:text-2xl font-normal leading-relaxed max-w-2xl mb-8 min-h-[58px]"
         >
           {displayed}
           {!done && (
@@ -60,72 +71,82 @@ export const HeroSection: React.FC = () => {
           )}
         </p>
 
-        {/* 3. Action pill buttons */}
+        {/* 4. Action buttons and scrub hint */}
         <div
-          id="action-pill-buttons"
-          className={`flex flex-wrap gap-y-1 ${
-            pillsVisible
+          id="hero-action-container"
+          className={`space-y-4 transition-all duration-500 ${
+            controlsVisible
               ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-[8px]'
+              : 'opacity-0 translate-y-3'
           }`}
-          style={{
-            transition: 'opacity 0.4s ease, transform 0.4s ease',
-          }}
         >
-          {/* White pill buttons */}
-          <button
-            id="pill-pitch-idea"
-            type="button"
-            className="inline-flex items-center justify-center bg-white text-black border border-black/10 rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] mx-[0.2em] mb-[0.4em] whitespace-nowrap hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer"
-          >
-            Pitch us an idea
-          </button>
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+            <a
+              id="btn-hero-explore-figurines"
+              href="#toonhub-section"
+              className="inline-flex items-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-white text-black font-bold uppercase text-xs sm:text-sm tracking-wider hover:bg-white/90 active:scale-95 transition-all duration-200 cursor-pointer group shadow-lg shadow-white/10"
+            >
+              <span>Explore Figurines</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </a>
 
-          <button
-            id="pill-come-work-here"
-            type="button"
-            className="inline-flex items-center justify-center bg-white text-black border border-black/10 rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] mx-[0.2em] mb-[0.4em] whitespace-nowrap hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer"
-          >
-            Come work here
-          </button>
+            <a
+              id="btn-hero-studio-inquiries"
+              href="#discover"
+              className="inline-flex items-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold uppercase text-xs sm:text-sm tracking-wider active:scale-95 transition-all duration-200 cursor-pointer backdrop-blur-md"
+            >
+              <span>Studio Inquiries</span>
+              <ArrowUpRight className="w-4 h-4 text-white/70" />
+            </a>
+          </div>
 
-          <button
-            id="pill-send-hello"
-            type="button"
-            className="inline-flex items-center justify-center bg-white text-black border border-black/10 rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] mx-[0.2em] mb-[0.4em] whitespace-nowrap hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer"
+          <div
+            id="hero-scrub-hint"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 border border-white/10 backdrop-blur-sm text-[11px] text-white/60"
           >
-            Send a brief hello
-          </button>
-
-          <button
-            id="pill-see-how-we-operate"
-            type="button"
-            className="inline-flex items-center justify-center bg-white text-black border border-black/10 rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] mx-[0.2em] mb-[0.4em] whitespace-nowrap hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer"
-          >
-            See how we operate
-          </button>
+            <MoveHorizontal className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Move cursor horizontally across screen to scrub timeline</span>
+          </div>
         </div>
       </div>
 
-      {/* Scroll down indicator to TOONHUB section */}
-      <a
-        id="scroll-to-toonhub-indicator"
-        href="#toonhub-section"
-        aria-label="Scroll down to TOONHUB figurines"
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 text-white/70 hover:text-white transition-colors duration-200 cursor-pointer select-none"
+      {/* 5. Bottom anchor bar matching ToonHub bottom layout */}
+      <div
+        id="hero-bottom-bar"
+        className="relative z-20 w-full pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/60"
       >
-        <span className="text-[10px] tracking-[0.2em] uppercase font-semibold text-white/80">
-          Scroll Down
-        </span>
-        <svg
-          className="w-4 h-4 animate-bounce text-white/80"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+        <div className="flex items-center gap-3">
+          <span className="text-white font-bold tracking-tight uppercase">EDITION 01</span>
+          <span>•</span>
+          <span className="uppercase tracking-wider">TOONHUB 3D ARCHIVE</span>
+        </div>
+
+        {/* Scroll indicator */}
+        <a
+          id="scroll-to-toonhub-indicator"
+          href="#toonhub-section"
+          aria-label="Scroll down to TOONHUB figurines"
+          className="flex items-center gap-2 text-white/80 hover:text-white transition-colors cursor-pointer select-none uppercase tracking-widest font-semibold text-[11px]"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M19 9l-7 7-7-7" />
-        </svg>
-      </a>
+          <span>Scroll to Explore</span>
+          <ArrowDown className="w-3.5 h-3.5 animate-bounce text-emerald-400" />
+        </a>
+
+        {/* Jump link styled like DISCOVER IT */}
+        <a
+          id="hero-jump-carousel"
+          href="#toonhub-section"
+          className="hidden md:flex items-center gap-2 text-white font-bold tracking-tight uppercase hover:text-white/80 transition-colors"
+          style={{
+            fontFamily: "'Anton', sans-serif",
+            fontSize: '18px',
+            letterSpacing: '0.02em',
+          }}
+        >
+          <span>VIEW COLLECTION</span>
+          <ArrowRight className="w-4 h-4" />
+        </a>
+      </div>
     </section>
   );
 };
