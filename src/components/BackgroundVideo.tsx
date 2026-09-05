@@ -130,13 +130,13 @@ export const BackgroundVideo: React.FC = () => {
       onError={handleVideoError}
       onLoadedMetadata={handleLoadedMetadata}
       onSeeked={handleSeeked}
-      className="fixed inset-0 z-0 w-full h-full object-cover"
+      className="fixed inset-0 z-0 w-full h-full object-cover hero-video-bg"
       style={{
         position: 'fixed',
         inset: 0,
         zIndex: 0,
         objectFit: 'cover',
-        objectPosition: '70% center',
+        objectPosition: '25% center',
       }}
     />
   );

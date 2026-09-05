@@ -25,3 +25,14 @@ body {
 .animate-blink {
   animation: blink 1s step-end infinite;
 }
+
+.hero-video-bg {
+  object-position: 25% center;
+}
+
+@media (max-width: 768px) {
+  .hero-video-bg {
+    object-position: 24% center !important;
+  }
+}
+

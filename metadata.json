@@ -1,6 +1,8 @@
 {
-  "name": "Mainframe",
+  "name": "Z Creations",
   "description": "Full-screen hero landing page for creative agency Mainframe featuring mouse-scrubbed interactive video and A.R.I.A typewriter interface.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

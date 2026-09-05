@@ -24,7 +24,7 @@ export const Navbar: React.FC = () => {
             className="text-[21px] sm:text-[26px] tracking-tight text-white select-none"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
-            Mainframe®
+            ZCREATIONS
           </span>
           <span
             id="navbar-decorative-asterisk"

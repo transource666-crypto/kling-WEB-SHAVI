@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTypewriter } from '../hooks/useTypewriter';
 
 const TYPEWRITER_TEXT =
-  'Glad you stopped in. Good taste tends to find us. Now, what are we building?';
+  'We see possibilities. We turn them into something unforgettable.';
 
 export const HeroSection: React.FC = () => {
   const { displayed, done } = useTypewriter(TYPEWRITER_TEXT, 38, 600);
@@ -41,7 +41,7 @@ export const HeroSection: React.FC = () => {
       className="relative z-1 h-screen w-full flex flex-col justify-end pb-12 md:justify-center md:pb-0 px-5 sm:px-8 md:px-10 overflow-hidden"
     >
       {/* Content container */}
-      <div id="hero-content" className="max-w-xl relative z-10 ml-auto self-end">
+      <div id="hero-content" className="w-full max-w-xl relative z-10 md:ml-auto md:self-end">
         {/* 1. Blurred intro label */}
         <div
           id="blurred-intro-label"
