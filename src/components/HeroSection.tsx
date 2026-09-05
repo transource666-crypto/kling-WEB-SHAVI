@@ -7,7 +7,6 @@ const TYPEWRITER_TEXT =
 export const HeroSection: React.FC = () => {
   const { displayed, done } = useTypewriter(TYPEWRITER_TEXT, 38, 600);
   const [pillsVisible, setPillsVisible] = useState(false);
-  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -16,24 +15,6 @@ export const HeroSection: React.FC = () => {
 
     return () => clearTimeout(timer);
   }, []);
-
-  const handleCopyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText('hello@mainframe.co');
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2200);
-    } catch {
-      // Fallback for clipboard if permissions fail
-      const textArea = document.createElement('textarea');
-      textArea.value = 'hello@mainframe.co';
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textArea);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2200);
-    }
-  };
 
   return (
     <section
@@ -123,83 +104,28 @@ export const HeroSection: React.FC = () => {
           >
             See how we operate
           </button>
-
-          {/* Outline pill button */}
-          <button
-            id="pill-reach-us-copy"
-            type="button"
-            onClick={handleCopyEmail}
-            aria-label="Copy hello@mainframe.co email to clipboard"
-            className="relative text-white bg-transparent border border-white rounded-full inline-flex items-center justify-center text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] mx-[0.2em] mb-[0.4em] whitespace-nowrap gap-2 sm:gap-3 hover:bg-white hover:text-black transition-colors duration-200 cursor-pointer group"
-          >
-            <span>
-              Reach us:{' '}
-              <span className="underline underline-offset-1">
-                hello@mainframe.co
-              </span>
-            </span>
-
-            {/* 12x12 copy icon (inline SVG of two overlapping rectangles) */}
-            {copied ? (
-              <svg
-                id="copy-success-icon"
-                width="12"
-                height="12"
-                viewBox="0 0 12 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="shrink-0"
-              >
-                <path
-                  d="M2.5 6.5L4.5 8.5L9.5 3.5"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            ) : (
-              <svg
-                id="copy-svg-icon"
-                width="12"
-                height="12"
-                viewBox="0 0 12 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="shrink-0"
-              >
-                <rect
-                  x="3.5"
-                  y="3.5"
-                  width="7"
-                  height="7"
-                  rx="1"
-                  stroke="currentColor"
-                  strokeWidth="1.2"
-                  fill="none"
-                />
-                <path
-                  d="M8.5 2V1.5C8.5 1.22386 8.27614 1 8 1H1.5C1.22386 1 1 1.22386 1 1.5V8C1 8.27614 1.22386 8.5 1.5 8.5H2"
-                  stroke="currentColor"
-                  strokeWidth="1.2"
-                  fill="none"
-                  strokeLinecap="round"
-                />
-              </svg>
-            )}
-
-            {/* Subtle floating feedback tooltip when copied */}
-            {copied && (
-              <span
-                id="copied-notification"
-                className="absolute -top-7 left-1/2 -translate-x-1/2 bg-white text-black text-[11px] font-medium px-2 py-0.5 rounded shadow pointer-events-none"
-              >
-                Copied!
-              </span>
-            )}
-          </button>
         </div>
       </div>
+
+      {/* Scroll down indicator to TOONHUB section */}
+      <a
+        id="scroll-to-toonhub-indicator"
+        href="#toonhub-section"
+        aria-label="Scroll down to TOONHUB figurines"
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 text-white/70 hover:text-white transition-colors duration-200 cursor-pointer select-none"
+      >
+        <span className="text-[10px] tracking-[0.2em] uppercase font-semibold text-white/80">
+          Scroll Down
+        </span>
+        <svg
+          className="w-4 h-4 animate-bounce text-white/80"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </a>
     </section>
   );
 };

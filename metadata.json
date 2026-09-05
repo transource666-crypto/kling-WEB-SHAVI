@@ -1,6 +1,6 @@
 {
   "name": "Z Creations",
-  "description": "Full-screen hero landing page for creative agency Mainframe featuring mouse-scrubbed interactive video and A.R.I.A typewriter interface.",
+  "description": "Interactive landing page featuring mouse-scrubbed video and the TOONHUB 3D character figurine carousel.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
